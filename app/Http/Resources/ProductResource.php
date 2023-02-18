@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -17,14 +18,13 @@ class ProductResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'name' => $this->name,
+            'description' => $this->description,
+            'quantity' => $this->quantity,
+            'price' => $this->price,
+            'amount_sold' => $this->amount_sold,
+            'user_id' => Product::Find($this->user_id)->user->name
         ];
     }
 
-    public function with($request){
-        return [
-            'version' => '1.0.0',
-            'author_url' => url('https://www.nazmulrobin.com'),
-        ];
-    }
 }

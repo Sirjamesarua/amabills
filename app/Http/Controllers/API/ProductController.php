@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ProductResource;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10);
+        $products = Product::orderBy('id','DESC')->paginate(10);
         return ProductResource::collection($products);
     }
 
@@ -32,15 +33,18 @@ class ProductController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'title' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'quantity' => 'required',
+            'price' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response(['error' => $validator->errors(), 'Validation Error']);
         }
 
-        $product = Product::create($data);
-        return new ProductResource($product);
+        $product = ProductService::createProduct($data);
+        return $product;
     }
 
     /**
@@ -65,16 +69,24 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        $validator = Validator::make($data, [
-            'title' => 'required',
-        ]);
+        if(auth()->user()->id == $product->user_id){
+            $validator = Validator::make($data, [
+                'name' => 'required',
+                'description' => 'required',
+                'quantity' => 'required',
+                'price' => 'required'
+            ]);
 
-        if ($validator->fails()) {
-            return response(['error' => $validator->errors(), 'Validation Error']);
+            if ($validator->fails()) {
+                return response(['error' => $validator->errors(), 'Validation Error']);
+            }
+
+
+            $product = ProductService::updateProduct($data,$product);
+            return $product;
+
         }
-
-        $product->update($request->all());
-        return new ProductResource($product);
+        return response(['message'=> 'not authorize to update']);
     }
 
     /**
@@ -85,19 +97,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return new ProductResource($product);
+        if(auth()->user()->id == $product->user_id){
+            $product->delete();
+            return response(['message'=> 'deleted successfully']);
+        }
+        return response(['message'=> 'not authorize to delete']);
     }
 
-    /**
-     * Search for a name
-     *
-     * @param  str  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function search($title)
-    {
-        $products = Product::where('title', 'like', '%'.$title.'%')->get();
-        return ProductResource::collection($products);
-    }
 }
