@@ -95,7 +95,7 @@ Install commands:
     
     
  ## SCREENSHOT
-      <img src="https://github.com/Sirjamesarua/amabills/blob/master/register.PNG" border="0">
-      <img src="https://github.com/Sirjamesarua/amabills/blob/master/products.PNG"  border="0">
-      <img src="https://github.com/Sirjamesarua/amabills/blob/master/users.PNG"  border="0">
-      <img src="https://github.com/Sirjamesarua/amabills/blob/master/userproducts.PNG"  border="0">
+ <img src="https://github.com/Sirjamesarua/amabills/blob/master/register.PNG" border="0">
+ <img src="https://github.com/Sirjamesarua/amabills/blob/master/products.PNG"  border="0">
+ <img src="https://github.com/Sirjamesarua/amabills/blob/master/users.PNG"  border="0">
+ <img src="https://github.com/Sirjamesarua/amabills/blob/master/userproducts.PNG"  border="0">
