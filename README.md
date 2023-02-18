@@ -41,7 +41,6 @@ Install commands:
     - Insert email and password: Body tab => x-www-form-urlencode <br>
       Email => dev.sirjames@gmail.com<br>
       Password => 'Password'<br>
-      <img src="https://i.ibb.co/gV1Yn9Z/1-Swagger-API-Demo.png" alt="1-Swagger-API-Demo" border="0">
     
     
 - List Products
@@ -94,3 +93,9 @@ Install commands:
     - Method: POST
     - Required params: password, password_confirmation 
     
+    
+ ## SCREENSHOT
+      <img src="https://github.com/Sirjamesarua/amabills/blob/master/register.PNG" border="0">
+      <img src="https://github.com/Sirjamesarua/amabills/blob/master/products.PNG"  border="0">
+      <img src="https://github.com/Sirjamesarua/amabills/blob/master/users.PNG"  border="0">
+      <img src="https://github.com/Sirjamesarua/amabills/blob/master/userproducts.PNG"  border="0">
