@@ -15,4 +15,11 @@ class UserController extends Controller
     	$user = $request->user();
          return new UserResource($user);
     }
+
+    public function users()
+    {
+    	$users = User::orderBy('id','DESC')->get();
+        return UserResource::collection($users);
+        // return new UserResource($user);
+    }
 }

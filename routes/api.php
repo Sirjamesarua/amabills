@@ -24,6 +24,7 @@ Route::post('password/reset', [AuthController::class, 'passwordReset'])->name('p
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-Route::get('user', [UserController::class, 'user']);
+	Route::get('user', [UserController::class, 'user']);
+	Route::get('users', [UserController::class, 'users']);
 });
 Route::apiResource('products', ProductController::class)->middleware('auth:api');

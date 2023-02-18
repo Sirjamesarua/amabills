@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
 use Database\Factories\ProductFactory;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -21,10 +21,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         Product::factory(12)->create();
 
-        DB::table('users')->insert([
+        $user = User::create([
             'name' => 'James Arua',
             'email' => 'dev.sirjames@gmail.com',
-            'password' => 'Password',
+            'password' => Hash::make('Password'),
         ]);
+
+        $user->createToken('authToken')->accessToken;
     }
 }

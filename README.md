@@ -3,7 +3,7 @@
  
 Features (API) include:
 
-- Authentication using passport
+- Authentication using passport expires after 24hours
 - Forgot password reset 
 - Logout to remove old tokens 
 - User can create product.
@@ -12,6 +12,7 @@ Features (API) include:
 - Update product by the owner.
 - Delete product by tge owner
 - Users can view their product in descending order
+- List all Users with their Products in descending order
 - Pagination link with json data
 
 
@@ -23,39 +24,65 @@ Install commands:
 - composer update
 - cp .env.example .env and update the database and mailer
 - php artisan key:generate
-- composer require laravel/passport
+- php artisan migrate:fresh
 - php artisan passport:install
-- php artisan migrate:fresh --seed
+- php artisan db:seed
 - php artisan serve
 
 ```
-
-Use Postman to test the API.
 
 
 ## Note
 
 - Login: 
-    - URL: http://laravel-8-api-crud.rob/api/login 
+    - URL: localhost:8000/api/login 
     - Method: POST
+    - Set Headers accept => application/json
     - Insert email and password: Body tab => x-www-form-urlencode
-    - Press Enter to get Bearer token;
-    - For future request add this token: 
-      <br>Authorization tab: Type => Bearer Token; Insert token.
+      Email => dev.sirjames@gmail.com
+      Password => 'Password'
+      ##LOGIN IMAGE
     
-- Insert/Update:
-    - Use Body tab => x-www-form-urlencode : Add title key and its value
-    - Another way: Body tab => raw : select json type 
-- Demo User (database/seeders/DatabaseSeeder.php): 
-<br> ```admin@admin.com/password```
+- List Products
+	- Copy the Token and add it in the <br> Authorization tab: Type => Bearer Token; Insert token. 
 
+    - URL: localhost:8000/api/products 
+    - Method: GET
 
-## License
+- List User  Products
+    - URL: localhost:8000/api/user 
+    - Method: GET
 
-The Laravel 8 Crud is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Log Out
+    - URL: localhost:8000/api/logout 
+    - Method: GET
 
+- Register
+    - URL: localhost:8000/api/register 
+    - Method: POST
+    - Required params: name, email, password
 
-## Contact
+- Create Product
+    - URL: localhost:8000/api/products 
+    - Method: POST
+    - Required params: name, description, price, quantity, amount_sold (optional)
+    
+- Update/Delete Product
+    - URL: localhost:8000/api/products/{product_id} 
+    - Method: PUT/DELETE
+    - Required params: name, description, price, quantity, amount_sold (optional)
+    
+- List All Users With Their Products
+    - URL: localhost:8000/api/users 
+    - Method: GET
 
-Feel free to contact:  
-<a href="https://www.nazmulrobin.com/">nazmulrobin.com</a> | <a href="https://twitter.com/nhr_rob">Twitter</a> | <a href="https://www.linkedin.com/in/nhrrob/">Linkedin</a> | <a href="mailto:robin.sust08@gmail.com">Email</a>
+- Forget Password
+    - URL: localhost:8000/api/password/forgot-password 
+    - Method: POST
+    - Required params: email
+
+- Reset Password
+    - URL: Copy the link sent to your email 
+    - Method: POST
+    - Required params: password, password_confirmation 
+    

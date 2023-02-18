@@ -23,7 +23,7 @@ class ProductResource extends JsonResource
             'quantity' => $this->quantity,
             'price' => $this->price,
             'amount_sold' => $this->amount_sold,
-            'user_id' => Product::Find($this->user_id)->user->name
+            'user' => Product::Find($this->user_id)->user->name
         ];
     }
 
