@@ -5,7 +5,7 @@ Features (API) include:
 
 - Authentication using passport. Expires after 24hours
 - Reset forgot password 
-- Logout to remove old tokens 
+- Register new user
 - User can create product.
 - List products in descending order.
 - Product attributes including Name, Description, Quantity, Price and Amount_sold
